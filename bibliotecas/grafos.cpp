@@ -1,7 +1,7 @@
 #ifndef GRAFOS_CPP
 #define GRAFOS_CPP
 #define SIZEG 160
-#include "main.h"
+#include "hash.h"
 typedef dataItem **grafo[SIZEG][SIZEG];
 void init_grafo(grafo G){
     int i;

@@ -1,5 +1,5 @@
 #ifndef  CABEÇALHO_CIDADE_CPP
-#include "main.cpp"
+#include "hash.cpp"
 
 struct cidade;
 struct gps;
