@@ -1,6 +1,6 @@
 #ifndef CIDADE_CPP
 #define CIDADE_CPP
-#define MAX 5570
+#define MAX 160
 #define SIZE 1024 
 #include <stdio.h>
 #include <stdlib.h>
