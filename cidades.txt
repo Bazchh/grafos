@@ -158,4 +158,4 @@ CODIGO MUNICIPIO;UF;NOME MUNICIPIO
  241420 RN Tibau do Sul
  241430 RN Timbaúba dos Batistas
  241440 RN Touros
- 241445 RN Triunfo Pot
+ 241445 RN Triunfo Potiguar
