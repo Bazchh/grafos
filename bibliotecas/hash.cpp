@@ -24,7 +24,7 @@ struct dataItem {
     int key;
     cidade city;
     gps GPS;
-    dataItem *vizinho;
+    float km;
     int vizinhos;
 };
 
