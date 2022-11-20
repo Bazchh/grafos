@@ -11,6 +11,7 @@ int main(){
     cidade *cidades = getCidades(arquivo1);
     gps *local = getGps(arquivo2);
     d = getItens(cidades,local);
-    inserir_dados(d,m);   
+    inserir_dados(d,m); 
+    
     return 0;
 }
