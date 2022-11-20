@@ -2,23 +2,25 @@
 #define GRAFOS_CPP
 #define SIZEG 161
 #include "hash.h"
-typedef dataItem **grafo[SIZEG][SIZEG];
 
-void init_grafo(grafo G){
-    int i, j;
-
+dataItem **aloca_grafo(dataItem **d){
+    int i;
+    d = (dataItem**)malloc(SIZEG*sizeof(dataItem*));
     for(i = 0; i < SIZEG; i++){
-        for(j = 0; j < SIZEG; j++){
-            G[i][j] = 0;
-        } 
+        d[i] = (dataItem*)malloc(SIZEG*sizeof(dataItem));
     }
+   return d;
 }
 
-int inserir_dados(dataItem *d, grafo g){
+int inserir_dados(dataItem *d, dataItem **m){
     int i, j;
-    dataItem aux;
+
     for(i = 0; i < SIZEG; i++){
-       
+       m[i][j] = d[i];
+    }
+    i = 0;
+    for(j = 0; j < SIZEG; j++){
+        m[i][j] = d[j];
     }
     return 0;
 }
