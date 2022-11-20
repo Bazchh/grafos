@@ -26,10 +26,33 @@ int inserir_dados(dataItem *d, dataItem **m){
     return 0;
 }
 
-float dist(latitude la,longitude lo, latitude lx, longitude ly){
-    float distancia;
-    distancia = (sqrt((pow(2,la-lx))+(pow(2,lo-ly))));
-    return distancia;
+float dist(latitude latA,longitude loA, latitude latB, longitude loB){
+    float distancia = 0;
+    distancia = sqrt((pow((latA-latB),2)+pow((loA-loB),2)));
+    if(distancia >= 0){
+        return distancia;
+    }
+    return -1;
+}
+
+dataItem **quilometros(dataItem **d){
+    float latA,loA,latB,loB, distancia;
+    int i = 0, j = 0;
+    for(i = 0; i < SIZEG; i++){
+        latA = d[i][j].GPS.la;
+        loA = d[i][j].GPS.lo;
+        for(j = 0; j < SIZEG; j++){
+            latB = d[0][j].GPS.la;
+            loB = d[0][j].GPS.lo;
+            distancia = dist(latA,loA,latB,loB);
+            if(distancia > 0){
+                d[i][0].vizinhos++;
+                d[i][j].km = distancia;
+                d[j][i].km = distancia;
+            } 
+        }
+    }
+    return d;
 }
 
 #endif
