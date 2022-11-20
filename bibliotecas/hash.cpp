@@ -24,7 +24,8 @@ struct dataItem {
     int key;
     cidade city;
     gps GPS;
-    int estado;
+    dataItem *vizinho;
+    int vizinhos;
 };
 
 cidade *getCidades(char *arquivo) {
