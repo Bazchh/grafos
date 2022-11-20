@@ -12,6 +12,6 @@ int main(){
     gps *local = getGps(arquivo2);
     d = getItens(cidades,local);
     inserir_dados(d,m); 
-    
+     m = quilometros(m);
     return 0;
 }
