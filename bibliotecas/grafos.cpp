@@ -1,6 +1,6 @@
 #ifndef GRAFOS_CPP
 #define GRAFOS_CPP
-#define SIZEG 161
+#define SIZEG 159
 #include "hash.h"
 
 
@@ -26,9 +26,21 @@ int inserir_dados(dataItem *d, dataItem **m){
     return 0;
 }
 
+float convert_la_lo(float la_lo){
+    float result;
+    la_lo = la_lo/60;
+    result = la_lo*1852;
+    return result;    
+}
+
 float dist(latitude latA,longitude loA, latitude latB, longitude loB){
-    float distancia = 0;
-    distancia = sqrt((pow((latA-latB),2)+pow((loA-loB),2)));
+    float distancia = 0, lo,la;
+    la = latA - latB;
+    lo = loA - loB;
+    la = convert_la_lo(la);
+    lo = convert_la_lo(lo);
+    distancia = pow(la,2)+pow(lo,2);
+    distancia = sqrt(distancia);
     if(distancia >= 0){
         return distancia;
     }
