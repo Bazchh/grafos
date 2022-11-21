@@ -1,4 +1,4 @@
-#define MAX 160
+#define MAX 159
 #define SIZE 1024 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,21 +40,26 @@ cidade *getCidades(char *arquivo) {
     char *uf;
     char *cid;
     int i = 0;
+    int j = 0;
     while (!feof(f)) {
         uf = (char *)malloc(2 * sizeof(char));
         cid = (char *)malloc(40 * sizeof(char));
         fscanf(f, "%d %s ", &cod, uf);
         fgets(cid, 40 * sizeof(char), f);
        // printf("%d %s %s", cod, uf, cid);
-        cidades[i].id = cod;
-        cidades[i].estado = uf;
-        cidades[i].cidade = cid;
+       if(strcmp(uf,"RN")== 0){
+        cidades[j].id = cod;
+        cidades[j].estado = uf;
+        cidades[j].cidade = cid;
+        j = j + 1;
+       }
+       
         i = i + 1;
     }
     return cidades;
 }
 
-gps *getGps(char *localizacoes) {
+gps *getGps(char *localizacoes, cidade *cidades) {
     FILE *f = fopen(localizacoes, "r");
     gps *local = (gps *)malloc(MAX * sizeof(gps));
     if (!f) {
@@ -65,16 +70,21 @@ gps *getGps(char *localizacoes) {
     unsigned int cod;
     latitude la;
     longitude lo;
-    int i = 0;
+    int i = 0, j = 0;
     while (!feof(f)) {
+        
         fscanf(f, "%u;%f;%f", &cod, &la, &lo);
         
-        //printf("%u;%.2f;%.2f\n", cod, la, lo);
-        local[i].id = cod;
-        local[i].la = la;
-        local[i].lo = lo;
+        if(cidades[j].id == cod){
+            local[i].id = cod;
+            local[i].la = la;
+            local[i].lo = -1*lo;
+            i = i + 1;
+            j = j + 1;
+        }
+      
         
-        i = i + 1;
+        
     }
     return local;
 }
