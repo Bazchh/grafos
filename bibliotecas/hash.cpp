@@ -1,4 +1,4 @@
-#define MAX 159
+#define MAX 5570
 #define SIZE 1024 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +12,7 @@ struct cidade {
     unsigned int id;
     char *estado;
     char *cidade;
+    int vizinhos;
 };
 
 struct gps {
@@ -47,19 +48,18 @@ cidade *getCidades(char *arquivo) {
         fscanf(f, "%d %s ", &cod, uf);
         fgets(cid, 40 * sizeof(char), f);
        // printf("%d %s %s", cod, uf, cid);
-       if(strcmp(uf,"RN")== 0){
+    
         cidades[j].id = cod;
         cidades[j].estado = uf;
         cidades[j].cidade = cid;
         j = j + 1;
-       }
        
         i = i + 1;
     }
     return cidades;
 }
 
-gps *getGps(char *localizacoes, cidade *cidades) {
+gps *getGps(char *localizacoes) {
     FILE *f = fopen(localizacoes, "r");
     gps *local = (gps *)malloc(MAX * sizeof(gps));
     if (!f) {
@@ -74,16 +74,10 @@ gps *getGps(char *localizacoes, cidade *cidades) {
     while (!feof(f)) {
         
         fscanf(f, "%u;%f;%f", &cod, &la, &lo);
-        
-        if(cidades[j].id == cod){
             local[i].id = cod;
             local[i].la = la;
             local[i].lo = -1*lo;
-            i = i + 1;
-            j = j + 1;
-        }
-      
-        
+            i = i + 1; 
         
     }
     return local;
