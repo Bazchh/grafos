@@ -101,6 +101,7 @@ float g[167][167], V;
             if (g[i][j] > 0){
                 aux++;
             }
+            j++;
         }
         if (aux > vizinhos.qntvizinhos){
             vizinhos.qntvizinhos = aux;
