@@ -29,6 +29,7 @@
 
 struct vizinhanca{
     int pos;
+    int posvoid;
     int qntvizinhos;
 };
 
@@ -94,12 +95,15 @@ float g[167][167], V;
     vizinhanca vizinhos;
     vizinhos.qntvizinhos = 0;
     vizinhos.pos = 0; 
-
+    vizinhos.posvoid = 0;
     for(i = 0; i < 167; i++){
         j = 0;
         while(j < 167){
             if (g[i][j] > 0){
                 aux++;
+            }
+            if(g[i][j] == 0){
+                vizinhos.posvoid = i;
             }
             j++;
         }
