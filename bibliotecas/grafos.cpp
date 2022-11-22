@@ -95,25 +95,36 @@ float g[167][167], V;
     vizinhanca vizinhos;
     vizinhos.qntvizinhos = 0;
     vizinhos.pos = 0; 
-    vizinhos.posvoid = 0;
+    vizinhos.posvoid = -1;
+
     for(i = 0; i < 167; i++){
         j = 0;
         while(j < 167){
             if (g[i][j] > 0){
                 aux++;
             }
-            if(g[i][j] == 0){
-                vizinhos.posvoid = i;
-            }
             j++;
         }
+
         if (aux > vizinhos.qntvizinhos){
             vizinhos.qntvizinhos = aux;
-            vizinhos.pos = i;
+            vizinhos.pos = i;          
             aux = 0;
+        } else if(aux == 0){
+            vizinhos.posvoid = i;
         }
     }
 
+    /*int cont = 0;
+    for(i = 0; i < 167; i++){
+        for(j = 0; j < 167; j++){
+            if(g[i][j] <= 0 && i != j){
+                cont++;
+            }
+        }
+    }   
+
+    printf("\n%i\n", cont);*/
     return vizinhos;
 }
 
